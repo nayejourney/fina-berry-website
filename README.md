@@ -52,7 +52,7 @@ Proyek ini dikembangkan oleh Kelompok 1 Kelas A1 Sistem Informasi, Universitas K
 | Kanaya Salsabila | Project Manager |
 | Tazkia Rizqiani | System Analyst |
 | Dinda Italia | Backend Developer |
-| Nosa Putra | Frontend Developer |
+| Nosa Putra | Frontend & Backend Developer |
 | Devina Ayuliani | QA Tester |
 
 ## Dokumentasi
