@@ -49,7 +49,7 @@ Proyek ini dikembangkan oleh Kelompok 1 Kelas A1 Sistem Informasi, Universitas K
 
 | Nama | Peran |
 |---|---|
-| Kanaya Salsabila | Project Manager |
+| Khanaya Salsabila | Project Manager |
 | Tazkia Rizqiani | System Analyst |
 | Dinda Italia | Backend Developer |
 | Nosa Putra | Frontend & Backend Developer |
