@@ -1,0 +1,94 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="eM31KzntOR5Uoy7Xvfyy">
+    <mxGraphModel dx="1433" dy="835" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="box_system" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontSize=14;fillColor=none;strokeColor=#000000;strokeWidth=2;" value="Sistem Website Warung Makan Fina Berry" vertex="1">
+          <mxGeometry height="660" width="640" x="240" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_pelanggan" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Pelanggan (guest)" vertex="1">
+          <mxGeometry height="60" width="30" x="110" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_staf" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Staf" vertex="1">
+          <mxGeometry height="60" width="30" x="110" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_pemilik" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Pemilik" vertex="1">
+          <mxGeometry height="60" width="30" x="940" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_c1" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Lihat profil, katalog, galeri &amp; promo" vertex="1">
+          <mxGeometry height="50" width="220" x="360" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_c2" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Kelola keranjang" vertex="1">
+          <mxGeometry height="50" width="170" x="385" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_c3" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Checkout &amp; kirim pesanan ke WhatsApp" vertex="1">
+          <mxGeometry height="50" width="250" x="345" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_s1" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Login / logout" vertex="1">
+          <mxGeometry height="50" width="120" x="410" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_s2" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Ubah ketersediaan menu" vertex="1">
+          <mxGeometry height="50" width="180" x="380" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_s3" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Pantau &amp; ubah status pesanan" vertex="1">
+          <mxGeometry height="50" width="200" x="370" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_s4" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Input pesanan offline (POS)" vertex="1">
+          <mxGeometry height="50" width="180" x="380" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_p1" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Login / logout" vertex="1">
+          <mxGeometry height="50" width="120" x="640" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_p2" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Kelola menu &amp; harga" vertex="1">
+          <mxGeometry height="50" width="160" x="620" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_p3" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Kelola promo &amp; galeri" vertex="1">
+          <mxGeometry height="50" width="160" x="620" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_p4" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Lihat laporan penjualan" vertex="1">
+          <mxGeometry height="50" width="170" x="615" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_p5" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Atur toko, staf &amp; QR Code" vertex="1">
+          <mxGeometry height="50" width="180" x="610" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="e_c1" edge="1" parent="1" source="actor_pelanggan" target="uc_c1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_c2" edge="1" parent="1" source="actor_pelanggan" target="uc_c2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_c3" edge="1" parent="1" source="actor_pelanggan" target="uc_c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s1" edge="1" parent="1" source="actor_staf" target="uc_s1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s2" edge="1" parent="1" source="actor_staf" target="uc_s2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s3" edge="1" parent="1" source="actor_staf" target="uc_s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s4" edge="1" parent="1" source="actor_staf" target="uc_s4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_p1" edge="1" parent="1" source="actor_pemilik" target="uc_p1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_p2" edge="1" parent="1" source="actor_pemilik" target="uc_p2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_p3" edge="1" parent="1" source="actor_pemilik" target="uc_p3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_p4" edge="1" parent="1" source="actor_pemilik" target="uc_p4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_p5" edge="1" parent="1" source="actor_pemilik" target="uc_p5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
