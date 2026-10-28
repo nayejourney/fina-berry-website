@@ -1,0 +1,142 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="1720" dy="1002" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pool_cust" parent="1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=14;" value="FLOWCHART PELANGGAN" vertex="1">
+          <mxGeometry height="780" width="340" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" parent="pool_cust" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Mulai" vertex="1">
+          <mxGeometry height="40" width="100" x="120" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" parent="pool_cust" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Buka Website&#xa;Fina Berry" vertex="1">
+          <mxGeometry height="50" width="140" x="100" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" parent="pool_cust" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Lihat Daftar Menu" vertex="1">
+          <mxGeometry height="50" width="140" x="100" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" parent="pool_cust" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Pilih Menu &amp;&#xa;Tambah ke Keranjang" vertex="1">
+          <mxGeometry height="50" width="140" x="100" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" parent="pool_cust" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Checkout Pesanan" vertex="1">
+          <mxGeometry height="50" width="140" x="100" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" parent="pool_cust" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Konfirmasi &amp;&#xa;Kirim via WhatsApp" vertex="1">
+          <mxGeometry height="50" width="140" x="100" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" parent="pool_cust" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Pesanan Masuk ke&#xa;Antrean Sistem" vertex="1">
+          <mxGeometry height="50" width="140" x="100" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" parent="pool_cust" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Selesai" vertex="1">
+          <mxGeometry height="40" width="100" x="120" y="535" as="geometry" />
+        </mxCell>
+        <mxCell id="cc1" edge="1" parent="pool_cust" source="c1" target="c2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cc2" edge="1" parent="pool_cust" source="c2" target="c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cc3" edge="1" parent="pool_cust" source="c3" target="c4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cc4" edge="1" parent="pool_cust" source="c4" target="c5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cc5" edge="1" parent="pool_cust" source="c5" target="c6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cc6" edge="1" parent="pool_cust" source="c6" target="c7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cc7" edge="1" parent="pool_cust" source="c7" target="c8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pool_cashier" parent="1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14;" value="FLOWCHART KASIR / STAF" vertex="1">
+          <mxGeometry height="780" width="340" x="410" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" parent="pool_cashier" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Mulai" vertex="1">
+          <mxGeometry height="40" width="100" x="120" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" parent="pool_cashier" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Login Staf / Kasir" vertex="1">
+          <mxGeometry height="50" width="140" x="100" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" parent="pool_cashier" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Dashboard Kasir&#xa;(Kelola Pesanan)" vertex="1">
+          <mxGeometry height="50" width="140" x="100" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" parent="pool_cashier" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Verifikasi Pesanan&#xa;Masuk" vertex="1">
+          <mxGeometry height="50" width="140" x="100" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="s5" parent="pool_cashier" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Ubah Status&#xa;(&quot;Diproses&quot; / &quot;Selesai&quot;)" vertex="1">
+          <mxGeometry height="50" width="140" x="100" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="s6" parent="pool_cashier" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Logout" vertex="1">
+          <mxGeometry height="40" width="100" x="120" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="s7" parent="pool_cashier" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Selesai" vertex="1">
+          <mxGeometry height="40" width="100" x="120" y="535" as="geometry" />
+        </mxCell>
+        <mxCell id="sc1" edge="1" parent="pool_cashier" source="s1" target="s2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sc2" edge="1" parent="pool_cashier" source="s2" target="s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sc3" edge="1" parent="pool_cashier" source="s3" target="s4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sc4" edge="1" parent="pool_cashier" source="s4" target="s5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sc5" edge="1" parent="pool_cashier" source="s5" target="s6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sc6" edge="1" parent="pool_cashier" source="s6" target="s7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pool_owner" parent="1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=14;" value="FLOWCHART ADMIN / OWNER" vertex="1">
+          <mxGeometry height="780" width="340" x="780" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="o1" parent="pool_owner" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Mulai" vertex="1">
+          <mxGeometry height="40" width="100" x="120" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="o2" parent="pool_owner" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Login Admin / Owner" vertex="1">
+          <mxGeometry height="50" width="140" x="100" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="o3" parent="pool_owner" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Dashboard Admin&#xa;(Kelola Menu / Laporan)" vertex="1">
+          <mxGeometry height="50" width="140" x="100" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="o4" parent="pool_owner" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Kelola Menu Web&#xa;(Tambah / Edit / Hapus)" vertex="1">
+          <mxGeometry height="50" width="140" x="100" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="o5" parent="pool_owner" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Unduh Laporan&#xa;Penjualan / Rekap" vertex="1">
+          <mxGeometry height="50" width="140" x="100" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="o6" parent="pool_owner" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Logout" vertex="1">
+          <mxGeometry height="40" width="100" x="120" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="o7" parent="pool_owner" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Selesai" vertex="1">
+          <mxGeometry height="40" width="100" x="120" y="535" as="geometry" />
+        </mxCell>
+        <mxCell id="oc1" edge="1" parent="pool_owner" source="o1" target="o2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oc2" edge="1" parent="pool_owner" source="o2" target="o3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oc3" edge="1" parent="pool_owner" source="o3" target="o4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oc4" edge="1" parent="pool_owner" source="o4" target="o5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oc5" edge="1" parent="pool_owner" source="o5" target="o6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oc6" edge="1" parent="pool_owner" source="o6" target="o7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
