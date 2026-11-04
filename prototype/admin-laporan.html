@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin - Laporan penjualan</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/admin.css" rel="stylesheet">
+</head>
+<body>
+<div id="page" class="d-none">
+
+<div class="ad-card p-3 mb-3"><div class="d-flex flex-wrap gap-2 align-items-end"><div><label class="form-label small mb-1">Dari</label><input type="date" class="form-control form-control-sm" value="2026-10-01"></div><div><label class="form-label small mb-1">Sampai</label><input type="date" class="form-control form-control-sm" value="2026-10-15"></div><button class="btn btn-sm btn-primary" data-p="Periode diterapkan">Tampilkan</button>
+<div class="d-flex flex-wrap gap-1 ms-md-3"><button class="btn btn-sm btn-outline-secondary" data-p="Hari ini">Hari ini</button><button class="btn btn-sm btn-outline-secondary" data-p="7 hari">7 hari</button><button class="btn btn-sm btn-outline-secondary" data-p="Bulan ini">Bulan ini</button><button class="btn btn-sm btn-outline-secondary" data-p="Bulan lalu">Bulan lalu</button></div></div></div>
+<div class="d-flex flex-wrap gap-2 mb-3"><a href="admin-laporan-cetak.html" class="btn btn-dark btn-sm"><i class="bi bi-printer"></i> Cetak laporan</a><button class="btn btn-outline-dark btn-sm" id="c1"><i class="bi bi-filetype-csv"></i> Unduh ringkasan (CSV)</button><button class="btn btn-outline-dark btn-sm" id="c2"><i class="bi bi-filetype-csv"></i> Unduh riwayat transaksi (CSV)</button></div>
+<div class="row g-3 mb-3"><div class="col-6 col-xl-3"><div class="ad-card p-3"><div class="text-muted small">Pendapatan</div><div class="ad-stat">Rp 4.220.000</div></div></div><div class="col-6 col-xl-3"><div class="ad-card p-3"><div class="text-muted small">Pesanan selesai</div><div class="ad-stat">129</div></div></div><div class="col-6 col-xl-3"><div class="ad-card p-3"><div class="text-muted small">Rata-rata per pesanan</div><div class="ad-stat">Rp 32.713</div></div></div><div class="col-6 col-xl-3"><div class="ad-card p-3"><div class="text-muted small">Porsi terjual / dibatalkan</div><div class="ad-stat">238 <small class="text-muted fs-6">/ 6</small></div></div></div></div>
+<p class="small text-muted">Hanya pesanan berstatus <strong>Selesai</strong> dengan pembayaran <strong>tervalidasi</strong> yang dihitung sebagai pendapatan, dari semua kanal.</p>
+<div class="row g-3 mb-3"><div class="col-lg-6"><div class="ad-card p-3 h-100"><h2 class="h6">Per kanal</h2><table class="table table-sm"><thead><tr><th>Kanal</th><th class="text-end">Pesanan</th><th class="text-end">Pendapatan</th></tr></thead><tbody><tr><td>Online (website/WhatsApp)</td><td class="text-end">38</td><td class="text-end">Rp 1.240.000</td></tr><tr><td>Offline (di warung)</td><td class="text-end">91</td><td class="text-end">Rp 2.980.000</td></tr></tbody></table>
+<h2 class="h6 mt-3">Per metode pembayaran</h2><table class="table table-sm mb-0"><tbody><tr><td>Tunai</td><td class="text-end">84</td><td class="text-end">Rp 2.710.000</td></tr><tr><td>QRIS</td><td class="text-end">31</td><td class="text-end">Rp 1.100.000</td></tr><tr><td>Transfer bank</td><td class="text-end">14</td><td class="text-end">Rp 410.000</td></tr></tbody></table></div></div>
+<div class="col-lg-6"><div class="ad-card p-3 h-100"><h2 class="h6">Per menu</h2><table class="table table-sm mb-0"><thead><tr><th>Menu</th><th class="text-end">Porsi</th><th class="text-end">Pendapatan</th></tr></thead><tbody><tr><td>Bakso Daging Sapi</td><td class="text-end">96</td><td class="text-end">Rp 1.440.000</td></tr><tr><td>Paket Ayam Bakar Kampung</td><td class="text-end">41</td><td class="text-end">Rp 1.107.000</td></tr><tr><td>Soto Ayam Komplit</td><td class="text-end">38</td><td class="text-end">Rp 760.000</td></tr><tr><td>Mendoan</td><td class="text-end">29</td><td class="text-end">Rp 290.000</td></tr></tbody></table></div></div></div>
+<div class="ad-card p-3"><h2 class="h6">Rekap per hari</h2><table class="table table-sm mb-0"><thead><tr><th>Tanggal</th><th class="text-end">Pesanan</th><th class="text-end">Pendapatan</th></tr></thead><tbody id="days"></tbody></table></div>
+</div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+(function(){
+if(!FB.adminChrome('laporan',2,'Laporan penjualan'))return;
+var D=[['Sen, 12 Okt',16,'Rp 512.000'],['Sel, 13 Okt',19,'Rp 618.000'],['Rab, 14 Okt',17,'Rp 540.000'],['Kam, 15 Okt',9,'Rp 412.000'],['Jum, 16 Okt',21,'Rp 701.000'],['Sab, 17 Okt',25,'Rp 912.000'],['Min, 18 Okt',22,'Rp 525.000']];document.getElementById('days').innerHTML=D.map(function(d){return '<tr><td>'+d[0]+'</td><td class="text-end">'+d[1]+'</td><td class="text-end">'+d[2]+'</td></tr>'}).join('');
+document.querySelectorAll('[data-p]').forEach(function(b){b.onclick=function(){FB.toast(b.dataset.p+' (data contoh tidak berubah).')}});
+document.getElementById('c1').onclick=function(){FB.csv('laporan-ringkasan.csv',[['LAPORAN PENJUALAN'],['Pendapatan',4220000],['Pesanan selesai',129],[],['Tanggal','Pesanan','Pendapatan']].concat(D))};
+document.getElementById('c2').onclick=function(){FB.csv('laporan-transaksi.csv',[['Kode','Waktu','Kanal','Total']].concat(FB.ORDERS.filter(function(o){return o.status==='selesai'}).map(function(o){return [o.code,o.time,o.ch,FB.orderTotal(o)]})))};
+})();
+</script>
+</body>
+</html>

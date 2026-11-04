@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout | Warung Makan Fina Berry</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/app.css" rel="stylesheet">
+</head>
+<body>
+<div id="nav"></div>
+<main>
+
+<section class="container py-5"><h1 class="fb-section-title mb-4">Checkout</h1><div id="err"></div><div class="row g-4"><div class="col-lg-7"><form id="f" novalidate>
+<div class="mb-3"><label class="form-label" for="nm">Nama</label><input type="text" id="nm" class="form-control" maxlength="80" value="Budi"></div>
+<div class="mb-3"><label class="form-label" for="hp">Nomor WhatsApp</label><input type="tel" id="hp" class="form-control" placeholder="081234567890"><div class="form-text">Dipakai warung untuk menghubungi Anda tentang pesanan.</div></div>
+<div class="mb-3"><span class="form-label d-block">Pengambilan</span><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ful" id="f1" value="Ambil di warung" checked><label class="form-check-label" for="f1">Ambil di warung</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ful" id="f2" value="Diantar"><label class="form-check-label" for="f2">Diantar</label></div></div>
+<div class="mb-3" id="alamatBox" style="display:none"><label class="form-label" for="al">Alamat pengantaran</label><textarea id="al" rows="2" class="form-control"></textarea></div>
+<div class="mb-3"><label class="form-label" for="py">Rencana pembayaran</label><select id="py" class="form-select"><option>Tunai</option><option>Transfer bank</option><option>QRIS</option></select><div class="form-text">Pembayaran dilakukan langsung di warung, bukan lewat website ini.</div></div>
+<div class="mb-3"><label class="form-label" for="nt">Catatan (opsional)</label><textarea id="nt" rows="2" class="form-control" placeholder="Contoh: tidak pedas"></textarea></div>
+<div class="form-check mb-4"><input class="form-check-input" type="checkbox" id="cs"><label class="form-check-label small" for="cs">Saya setuju data nama, nomor WhatsApp, dan alamat dipakai hanya untuk memproses pesanan ini.</label></div>
+<button type="submit" class="btn btn-primary btn-lg w-100"><i class="bi bi-whatsapp"></i> Simpan pesanan dan lanjut ke WhatsApp</button></form></div>
+<div class="col-lg-5"><div class="card border-0 shadow-sm"><div class="card-body"><h2 class="h5">Ringkasan pesanan</h2><ul class="list-unstyled mb-3" id="sum"></ul><div class="d-flex justify-content-between fs-5 fw-bold"><span>Total</span><span class="fb-price" id="tot"></span></div><a href="keranjang.html" class="small">Ubah keranjang</a></div></div></div></div></section>
+</main>
+<div id="foot"></div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+FB.pubChrome('menu');
+var c=FB.getCart(),ids=Object.keys(c).filter(function(k){return c[k]>0});
+if(!ids.length){location.href='keranjang.html'}
+document.getElementById('sum').innerHTML=ids.map(function(k){var p=FB.prod(k);return '<li class="d-flex justify-content-between py-1 border-bottom"><span>'+p.name+' <span class="text-muted">x'+c[k]+'</span></span><span>'+FB.rp(p.price*c[k])+'</span></li>'}).join('');
+document.getElementById('tot').textContent=FB.rp(FB.cartTotal());
+document.querySelectorAll('[name=ful]').forEach(function(r){r.onchange=function(){document.getElementById('alamatBox').style.display=document.getElementById('f2').checked?'':'none'}});
+document.getElementById('f').onsubmit=function(e){e.preventDefault();var er=[],nm=nm_=document.getElementById('nm').value.trim(),hp=document.getElementById('hp').value.replace(/[\s.\-]/g,'');
+ if(!nm)er.push('Nama wajib diisi.');if(!/^(\+?62|0)8[0-9]{7,12}$/.test(hp))er.push('Nomor WhatsApp tidak valid. Contoh: 081234567890.');
+ var antar=document.getElementById('f2').checked;if(antar&&!document.getElementById('al').value.trim())er.push('Alamat pengantaran wajib diisi jika memilih diantar.');
+ if(!document.getElementById('cs').checked)er.push('Anda perlu menyetujui pemberitahuan privasi untuk melanjutkan.');
+ if(er.length){document.getElementById('err').innerHTML='<div class="alert alert-danger"><div class="fw-semibold mb-1">Periksa kembali isian Anda:</div><ul class="mb-0 ps-3">'+er.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div>';window.scrollTo(0,0);return}
+ var d=new Date(),code='FB-20261015-'+String(4+Math.floor(Math.random()*5)).padStart(3,'0');
+ localStorage.setItem('fb_last',JSON.stringify({code:code,name:nm,phone:hp,ful:antar?'Diantar: '+document.getElementById('al').value:'Ambil di warung',pay:document.getElementById('py').value,notes:document.getElementById('nt').value,cart:c,total:FB.cartTotal()}));
+ localStorage.removeItem('fb_cart');location.href='konfirmasi.html'};
+</script>
+</body>
+</html>

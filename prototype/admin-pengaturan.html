@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin - Pengaturan toko</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/admin.css" rel="stylesheet">
+</head>
+<body>
+<div id="page" class="d-none">
+
+<form id="f" class="ad-card p-3 p-md-4" style="max-width:820px"><div class="row g-3">
+<div class="col-md-6"><label class="form-label">Nama usaha</label><input class="form-control" value="Warung Makan Fina Berry"></div><div class="col-md-6"><label class="form-label">Nomor WhatsApp pemesanan</label><input class="form-control" value="6285647731631"><div class="form-text">Tujuan tombol WhatsApp dan pesan pesanan.</div></div>
+<div class="col-12"><label class="form-label">Tagline</label><input class="form-control" value="Rasa rumahan yang tak terlupakan, sejak 2012"></div>
+<div class="col-12"><label class="form-label">Tentang usaha</label><textarea rows="3" class="form-control">Warung Fina Berry berdiri sejak 2012 dan hadir dengan berbagai pilihan menu yang lezat, berkualitas, dan terjangkau.</textarea></div>
+<div class="col-12"><label class="form-label">Alamat</label><textarea rows="2" class="form-control">Kawasan D'LAS (Desa Wisata Lembah Asri), Desa Serang, Karangreja, Purbalingga, Jawa Tengah.</textarea></div>
+<div class="col-md-6"><label class="form-label">Jam buka</label><input class="form-control" value="08.00 - 17.00 WIB"></div><div class="col-md-6"><label class="form-label">Kata kunci peta</label><input class="form-control" value="Warung Makan Fina Berry D'LAS Karangreja Purbalingga"></div>
+<div class="col-md-4"><label class="form-label">Instagram</label><input class="form-control" value="https://www.instagram.com/fina.berry"></div><div class="col-md-4"><label class="form-label">Facebook</label><input class="form-control"></div><div class="col-md-4"><label class="form-label">TikTok</label><input class="form-control"></div>
+<div class="col-md-6"><label class="form-label">Nomor sertifikat halal</label><input class="form-control"><div class="form-text">Kosongkan jika belum ada.</div></div></div><button class="btn btn-primary mt-4">Simpan pengaturan</button></form>
+</div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+(function(){
+if(!FB.adminChrome('pengaturan',2,'Pengaturan toko'))return;
+document.getElementById('f').onsubmit=function(e){e.preventDefault();FB.toast('Pengaturan toko disimpan (contoh).','success')};
+})();
+</script>
+</body>
+</html>

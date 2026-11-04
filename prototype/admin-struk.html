@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin - Struk</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/admin.css" rel="stylesheet">
+</head>
+<body>
+<div id="page" class="d-none">
+
+<div class="no-print mb-3 d-flex gap-2"><button class="btn btn-dark" onclick="window.print()"><i class="bi bi-printer"></i> Cetak</button><a id="back" href="admin-pesanan.html" class="btn btn-light">Kembali</a></div>
+<div class="ad-card p-4 mx-auto" style="max-width:340px;font-family:'Courier New',monospace;font-size:13px" id="rc"></div>
+</div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+(function(){
+if(!FB.adminChrome('pesanan',1,'Struk'))return;
+var o=FB.ORDERS.filter(function(x){return x.code===FB.qs('id')})[0]||FB.ORDERS[2];document.getElementById('back').href='admin-pesanan-detail.html?id='+o.code;
+document.getElementById('rc').innerHTML='<div class="text-center"><strong>Warung Makan Fina Berry</strong><br><small>Kawasan D\'LAS, Karangreja, Purbalingga</small></div><hr style="border-top:1px dashed #000">'+
+'<div class="d-flex justify-content-between"><span>Kode</span><span>'+o.code+'</span></div><div class="d-flex justify-content-between"><span>Tanggal</span><span>'+o.time+'</span></div><div class="d-flex justify-content-between"><span>Layanan</span><span>'+o.ful+'</span></div><hr style="border-top:1px dashed #000">'+
+o.items.map(function(i){var p=FB.prod(i[0]);return '<div>'+p.name+'</div><div class="d-flex justify-content-between"><span>'+i[1]+' x '+p.price.toLocaleString('id-ID')+'</span><span>'+(p.price*i[1]).toLocaleString('id-ID')+'</span></div>'}).join('')+
+'<hr style="border-top:1px dashed #000"><div class="d-flex justify-content-between"><strong>TOTAL</strong><strong>'+FB.rp(FB.orderTotal(o))+'</strong></div><div class="d-flex justify-content-between"><span>Bayar</span><span>'+o.pay+' &middot; '+(o.paid?'LUNAS':'BELUM BAYAR')+'</span></div><hr style="border-top:1px dashed #000"><div class="text-center"><small>Terima kasih sudah makan di Fina Berry</small></div>';
+})();
+</script>
+</body>
+</html>

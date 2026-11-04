@@ -1,0 +1,20 @@
+PROTOTIPE KLIK WEBSITE FINA BERRY (tanpa API / backend)
+
+Mulai dari: mulai.html  (pilih peran: Pelanggan, Staf, Manager/Pemilik, Bos)
+
+CARA MEMBUKA (pilih salah satu)
+1. Laragon: taruh folder ini di C:\laragon\www\prototipe, lalu buka http://localhost/prototipe/mulai.html
+2. VS Code: ekstensi "Live Server" -> klik kanan mulai.html -> Open with Live Server
+3. Terminal di folder ini: python -m http.server 8000 -> buka http://localhost:8000/mulai.html
+(Membuka langsung dengan klik dua kali juga bisa, tetapi sebagian browser tidak menyimpan keranjang/peran antarhalaman untuk file lokal.)
+
+ALUR PER PERAN
+- Pelanggan : index -> menu (filter kategori) -> Tambah -> keranjang -> checkout -> konfirmasi (tombol WhatsApp + salin pesan)
+- Staf      : login -> dashboard -> pesanan -> detail (Proses, Validasi pembayaran, Selesai, Batal) ; Input di warung ; Menu (tandai habis)
+- Manager   : + kategori, promo, galeri, QR, pengaturan, laporan (cetak + CSV), biaya, akun staf, log, koreksi pesanan selesai
+- Bos       : + laba rugi, margin, analitik (grafik, cetak, CSV), kelola semua akun
+Ganti peran kapan saja lewat lencana peran di pojok kanan atas dashboard. Halaman di luar hak akses menampilkan 403.
+
+CATATAN
+- Semua data hanyalah contoh; tidak ada yang tersimpan ke server. Keranjang, peran, dan pesanan terakhir disimpan di localStorage browser.
+- Isi dan gaya sama dengan website Laravel (Bootstrap + app.css/admin.css), jadi aman dijadikan acuan desain.

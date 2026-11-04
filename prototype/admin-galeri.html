@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin - Galeri foto</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/admin.css" rel="stylesheet">
+</head>
+<body>
+<div id="page" class="d-none">
+
+<form id="f" class="ad-card p-3 mb-3"><h2 class="h6">Tambah foto</h2><div class="row g-2 align-items-end"><div class="col-md-4"><input type="file" class="form-control" required></div><div class="col-md-4"><input class="form-control" placeholder="Keterangan (opsional)"></div><div class="col-md-2"><input type="number" class="form-control" placeholder="Urutan"></div><div class="col-md-2"><button class="btn btn-primary w-100">Unggah</button></div></div></form>
+<div class="row g-3" id="g"></div>
+</div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+(function(){
+if(!FB.adminChrome('galeri',2,'Galeri foto'))return;
+var G=['warung', 'galeri-bakso', 'galeri-soto', 'galeri-ayam', 'galeri-mendoan', 'about'];
+function draw(){document.getElementById('g').innerHTML=G.map(function(g,i){return '<div class="col-6 col-md-4 col-xl-3"><div class="ad-card p-2 h-100"><img src="assets/img/'+g+'.webp" class="img-fluid rounded mb-2" style="aspect-ratio:1/1;object-fit:cover;width:100%" alt=""><input class="form-control form-control-sm mb-1" placeholder="Keterangan"><div class="d-flex gap-1"><button class="btn btn-sm btn-outline-primary" data-s>Simpan</button><button class="btn btn-sm btn-outline-danger ms-auto" data-d="'+i+'"><i class="bi bi-trash"></i></button></div></div></div>'}).join('');
+ document.querySelectorAll('[data-s]').forEach(function(b){b.onclick=function(){FB.toast('Informasi foto diperbarui (contoh).','success')}});
+ document.querySelectorAll('[data-d]').forEach(function(b){b.onclick=function(){if(confirm('Hapus foto ini?')){G.splice(b.dataset.d,1);draw()}}})}
+document.getElementById('f').onsubmit=function(e){e.preventDefault();FB.toast('Foto ditambahkan ke galeri (contoh).','success')};draw();
+})();
+</script>
+</body>
+</html>

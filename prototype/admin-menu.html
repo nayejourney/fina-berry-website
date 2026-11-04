@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin - Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/admin.css" rel="stylesheet">
+</head>
+<body>
+<div id="page" class="d-none">
+
+<div class="d-flex flex-wrap gap-2 mb-3"><div class="d-flex gap-2 me-auto"><select class="form-select form-select-sm w-auto" id="fk"><option value="">Semua kategori</option><option>Makanan</option><option>Minuman</option><option>Cemilan</option></select><input type="search" id="fq" class="form-control form-control-sm w-auto" placeholder="Cari menu"></div><a href="admin-menu-form.html" class="btn btn-primary btn-sm" id="add"><i class="bi bi-plus-lg"></i> Tambah menu</a></div>
+<div class="ad-card p-3"><p class="small text-muted" id="note"></p><div class="table-responsive"><table class="table table-hover align-middle mb-0"><thead><tr><th></th><th>Menu</th><th>Kategori</th><th class="text-end">Harga</th><th class="text-end own">HPP</th><th>Ketersediaan</th><th></th></tr></thead><tbody id="rows"></tbody></table></div></div>
+</div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+(function(){
+if(!FB.adminChrome('menu',1,'Menu'))return;
+var own=FB.lvl()>=2;if(!own){document.getElementById('add').remove();document.querySelectorAll('.own').forEach(function(e){e.remove()});document.getElementById('note').textContent='Anda dapat menandai menu habis atau tersedia. Perubahan harga dan data menu dilakukan Manager/Pemilik.'}
+var P=FB.PRODUCTS.map(function(p){return Object.assign({},p)});
+function draw(){var k=document.getElementById('fk').value,q=document.getElementById('fq').value.toLowerCase();document.getElementById('rows').innerHTML=P.filter(function(p){return (!k||p.cat===k)&&(!q||p.name.toLowerCase().indexOf(q)>-1)}).map(function(p){
+ return '<tr><td style="width:56px"><img src="assets/img/menu/'+p.img+'.webp" width="48" height="48" class="rounded" style="object-fit:cover" alt=""></td><td class="fw-semibold">'+p.name+(p.feat?' <span class="badge text-bg-warning">Unggulan</span>':'')+'</td><td>'+p.cat+'</td><td class="text-end">'+FB.rp(p.price)+'</td>'+(own?'<td class="text-end text-muted">'+FB.rp(p.cost)+'</td>':'')+
+ '<td><button class="btn btn-sm '+(p.ok?'btn-outline-success':'btn-danger')+'" data-t="'+p.id+'">'+(p.ok?'Tersedia':'Habis')+' <i class="bi bi-arrow-repeat"></i></button></td><td class="text-end">'+(own?'<a href="admin-menu-form.html?id='+p.id+'" class="btn btn-sm btn-outline-primary">Ubah</a> <button class="btn btn-sm btn-outline-danger" data-x="'+p.id+'"><i class="bi bi-trash"></i></button>':'')+'</td></tr>'}).join('');
+ document.querySelectorAll('[data-t]').forEach(function(b){b.onclick=function(){var p=P.filter(function(x){return x.id==b.dataset.t})[0];p.ok=!p.ok;FB.toast(p.name+' ditandai '+(p.ok?'tersedia':'habis')+'.','success');draw()}});
+ document.querySelectorAll('[data-x]').forEach(function(b){b.onclick=function(){if(confirm('Hapus menu ini? Menu yang pernah dipesan hanya dinonaktifkan.')){P=P.filter(function(x){return x.id!=b.dataset.x});FB.toast('Menu dihapus (contoh).');draw()}}})}
+document.getElementById('fk').onchange=draw;document.getElementById('fq').oninput=draw;draw();
+})();
+</script>
+</body>
+</html>

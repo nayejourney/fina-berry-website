@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masuk Admin | Fina Berry</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/admin.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container py-5" style="max-width:470px"><div class="text-center mb-4"><img src="assets/img/logo.webp" width="72" height="72" class="rounded-circle mb-2" alt=""><h1 class="h4 mb-0">Warung Makan Fina Berry</h1><div class="text-muted">Masuk ke dashboard admin</div></div>
+<div class="ad-card p-4"><div id="err"></div>
+<label class="form-label">Masuk sebagai (demo)</label>
+<div class="btn-group w-100 mb-3" role="group"><input type="radio" class="btn-check" name="r" id="r1" value="staf"><label class="btn btn-outline-dark" for="r1">Staf</label><input type="radio" class="btn-check" name="r" id="r2" value="pemilik"><label class="btn btn-outline-dark" for="r2">Manager</label><input type="radio" class="btn-check" name="r" id="r3" value="bos"><label class="btn btn-outline-dark" for="r3">Bos</label></div>
+<form id="f"><div class="mb-3"><label class="form-label" for="em">Email</label><input type="email" id="em" class="form-control" required></div>
+<div class="mb-3"><label class="form-label" for="pw">Kata sandi</label><input type="password" id="pw" class="form-control" required></div>
+<div class="form-check mb-3"><input class="form-check-input" type="checkbox" id="rm"><label class="form-check-label" for="rm">Ingat saya di perangkat ini</label></div><button class="btn btn-primary w-100">Masuk</button></form></div>
+<p class="text-center mt-3"><a href="index.html" class="small">&larr; Kembali ke website</a> &middot; <a href="mulai.html" class="small">Pilih peran lain</a></p></div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+var E={staf:'staf@finaberry.test',pemilik:'pemilik@finaberry.test',bos:'bos@finaberry.test'};
+function pick(r){document.getElementById('r'+({staf:1,pemilik:2,bos:3})[r]).checked=true;document.getElementById('em').value=E[r];document.getElementById('pw').value='demo-password'}
+pick(FB.qs('role')||'staf');
+document.querySelectorAll('[name=r]').forEach(function(i){i.onchange=function(){pick(i.value)}});
+document.getElementById('f').onsubmit=function(e){e.preventDefault();var r=document.querySelector('[name=r]:checked');
+ if(!document.getElementById('pw').value){document.getElementById('err').innerHTML='<div class="alert alert-danger py-2">Email atau kata sandi salah.</div>';return}
+ localStorage.setItem('fb_role',r?r.value:'staf');location.href='admin-dashboard.html'};
+</script>
+</body>
+</html>

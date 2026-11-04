@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beranda | Warung Makan Fina Berry</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/app.css" rel="stylesheet">
+</head>
+<body>
+<div id="nav"></div>
+<main>
+
+<section class="fb-hero py-5"><div class="container"><div class="row align-items-center g-4">
+ <div class="col-lg-6"><p class="fb-tag mb-2">Selamat datang</p><h1 class="mb-3">Warung Makan Fina Berry</h1>
+  <p class="lead text-muted mb-4">Rasa rumahan yang tak terlupakan, sejak 2012</p>
+  <div class="d-flex flex-wrap gap-2"><a href="menu.html" class="btn btn-primary btn-lg"><i class="bi bi-journal-text"></i> Lihat menu dan pesan</a>
+  <a href="https://wa.me/6285647731631" target="_blank" rel="noopener" class="btn btn-outline-primary btn-lg"><i class="bi bi-whatsapp"></i> Tanya lewat WhatsApp</a></div>
+  <div class="d-flex gap-3 mt-4 small text-muted"><span><i class="bi bi-clock text-berry"></i> 08.00 - 17.00 WIB</span></div></div>
+ <div class="col-lg-6"><img src="assets/img/hero.webp" class="fb-hero-img" alt="Hidangan Fina Berry"></div></div></div></section>
+<section class="fb-section" id="tentang"><div class="container"><div class="row align-items-center g-5">
+ <div class="col-md-5"><img src="assets/img/about.webp" class="img-fluid rounded-4 shadow-sm" alt=""></div>
+ <div class="col-md-7"><p class="fb-tag mb-1">Tentang kami</p><h2 class="fb-section-title mb-3">Masakan rumahan yang bikin kangen</h2>
+  <p class="text-muted">Warung Fina Berry berdiri sejak 2012 dan hadir dengan berbagai pilihan menu yang lezat, berkualitas, dan terjangkau. Setiap hidangan dimasak dengan penuh dedikasi.</p>
+  <div class="row g-3 mt-2"><div class="col-6"><i class="bi bi-basket2 text-berry"></i> Bahan segar setiap hari</div><div class="col-6"><i class="bi bi-fire text-berry"></i> Resep rumahan autentik</div><div class="col-6"><i class="bi bi-cash-coin text-berry"></i> Harga terjangkau</div><div class="col-6"><i class="bi bi-lightning-charge text-berry"></i> Penyajian cepat</div></div></div></div></div></section>
+<section class="fb-section bg-cream"><div class="container"><div class="d-flex justify-content-between align-items-end mb-4"><div><p class="fb-tag mb-1">Pilihan favorit</p><h2 class="fb-section-title mb-0">Menu andalan kami</h2></div><a href="menu.html" class="btn btn-outline-primary">Semua menu <i class="bi bi-arrow-right"></i></a></div><div class="row g-4" id="featured"></div></div></section>
+<section class="fb-section"><div class="container"><p class="fb-tag mb-1">Sedang berlangsung</p><h2 class="fb-section-title mb-4">Promo</h2><div class="row g-4"><div class="col-md-6 col-lg-4"><div class="fb-promo p-3 h-100"><h3 class="h5">Promo akhir pekan</h3><p class="small text-muted mb-2">Contoh promo: beli 2 porsi mendoan gratis es teh.</p><span class="badge text-bg-warning">Sampai 31 Oktober 2026</span><div class="mt-3"><a href="promo.html" class="btn btn-sm btn-outline-primary">Lihat semua promo</a></div></div></div></div></div></section>
+<section class="fb-section bg-cream"><div class="container"><div class="d-flex justify-content-between align-items-end mb-4"><div><p class="fb-tag mb-1">Galeri</p><h2 class="fb-section-title mb-0">Momen lezat kami</h2></div><a href="galeri.html" class="btn btn-outline-primary">Lihat semua</a></div><div class="row g-3 fb-gallery" id="gal"></div></div></section>
+<section class="fb-section"><div class="container"><div class="row g-4 align-items-stretch"><div class="col-lg-5"><p class="fb-tag mb-1">Kunjungi kami</p><h2 class="fb-section-title mb-3">Lokasi dan jam buka</h2>
+ <p><i class="bi bi-geo-alt text-berry"></i> Kawasan D'LAS, Desa Serang, Karangreja, Purbalingga.</p><p><i class="bi bi-clock text-berry"></i> 08.00 - 17.00 WIB</p><p><i class="bi bi-telephone text-berry"></i> +6285647731631</p><a href="kontak.html" class="btn btn-primary">Halaman kontak</a></div>
+ <div class="col-lg-7"><iframe class="fb-map" title="Peta" loading="lazy" src="https://www.google.com/maps?q=Warung+Makan+Fina+Berry+D%27LAS+Karangreja+Purbalingga&output=embed"></iframe></div></div></div></section>
+</main>
+<div id="foot"></div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+FB.pubChrome('home');
+document.getElementById('featured').innerHTML=FB.PRODUCTS.filter(function(p){return p.feat}).slice(0,6).map(function(p){return '<div class="col-6 col-lg-4">'+FB.card(p)+'</div>'}).join('');
+document.getElementById('gal').innerHTML=['warung', 'galeri-bakso', 'galeri-soto', 'galeri-ayam', 'galeri-mendoan', 'about'].map(function(g){return '<div class="col-6 col-md-4"><img src="assets/img/'+g+'.webp" alt="" loading="lazy"></div>'}).join('');
+</script>
+</body>
+</html>

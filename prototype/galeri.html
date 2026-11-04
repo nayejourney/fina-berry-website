@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galeri | Warung Makan Fina Berry</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/app.css" rel="stylesheet">
+</head>
+<body>
+<div id="nav"></div>
+<main>
+
+<section class="container py-5"><p class="fb-tag mb-1">Galeri</p><h1 class="fb-section-title mb-4">Foto hidangan dan suasana warung</h1><div class="row g-3 fb-gallery" id="gal"></div>
+<div class="mt-4"><a href="menu.html" class="btn btn-primary">Pesan sekarang</a></div></section>
+</main>
+<div id="foot"></div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+FB.pubChrome('galeri');
+document.getElementById('gal').innerHTML=['warung', 'galeri-bakso', 'galeri-soto', 'galeri-ayam', 'galeri-mendoan', 'about'].map(function(g){return '<div class="col-6 col-md-4 col-lg-3"><img src="assets/img/'+g+'.webp" alt="" loading="lazy"></div>'}).join('');
+</script>
+</body>
+</html>

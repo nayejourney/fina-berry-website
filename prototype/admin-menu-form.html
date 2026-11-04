@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin - Ubah / tambah menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/admin.css" rel="stylesheet">
+</head>
+<body>
+<div id="page" class="d-none">
+
+<form id="f" class="ad-card p-3 p-md-4" style="max-width:760px"><div class="row g-3">
+<div class="col-md-8"><label class="form-label">Nama menu</label><input id="nm" class="form-control" required></div><div class="col-md-4"><label class="form-label">Kategori</label><select id="ct" class="form-select"><option>Makanan</option><option>Minuman</option><option>Cemilan</option></select></div>
+<div class="col-12"><label class="form-label">Deskripsi (opsional)</label><textarea id="ds" rows="2" class="form-control"></textarea></div>
+<div class="col-md-6"><label class="form-label">Harga jual (Rp)</label><input type="number" id="pr" class="form-control" min="0" required></div>
+<div class="col-md-6"><label class="form-label">HPP / modal per porsi (Rp)</label><input type="number" id="hp" class="form-control" min="0" required><div class="form-text">Dipakai untuk menghitung laba dan margin (hanya terlihat Manager dan Bos).</div></div>
+<div class="col-12"><label class="form-label">Foto menu</label><input type="file" class="form-control" accept="image/*"><img id="ph" class="mt-2 rounded d-none" width="120" alt=""></div>
+<div class="col-12 d-flex flex-wrap gap-4"><div class="form-check"><input class="form-check-input" type="checkbox" id="a1" checked><label class="form-check-label" for="a1">Tersedia (bisa dipesan)</label></div><div class="form-check"><input class="form-check-input" type="checkbox" id="a2" checked><label class="form-check-label" for="a2">Aktif (tampil di katalog)</label></div><div class="form-check"><input class="form-check-input" type="checkbox" id="a3"><label class="form-check-label" for="a3">Menu unggulan</label></div></div></div>
+<div class="mt-4 d-flex gap-2"><button class="btn btn-primary">Simpan</button><a href="admin-menu.html" class="btn btn-light">Batal</a></div></form>
+</div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+(function(){
+if(!FB.adminChrome('menu',2,'Ubah / tambah menu'))return;
+var p=FB.prod(FB.qs('id'));if(p){nm.value=p.name;ct.value=p.cat;ds.value=p.desc||'';pr.value=p.price;hp.value=p.cost;a1.checked=p.ok;a3.checked=!!p.feat;ph.src='assets/img/menu/'+p.img+'.webp';ph.classList.remove('d-none')}
+document.getElementById('f').onsubmit=function(e){e.preventDefault();FB.toast('Menu tersimpan (contoh).','success');setTimeout(function(){location.href='admin-menu.html'},800)};
+})();
+</script>
+</body>
+</html>

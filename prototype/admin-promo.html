@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin - Promo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/admin.css" rel="stylesheet">
+</head>
+<body>
+<div id="page" class="d-none">
+
+<div class="mb-3"><button class="btn btn-primary btn-sm" id="add"><i class="bi bi-plus-lg"></i> Tambah promo</button></div>
+<div class="ad-card p-3"><table class="table align-middle mb-0"><thead><tr><th>Promo</th><th>Periode</th><th>Status</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+<div class="modal fade" id="mdl" tabindex="-1"><div class="modal-dialog"><form class="modal-content" id="f"><div class="modal-header"><h5 class="modal-title">Promo</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body">
+<label class="form-label">Judul promo</label><input id="pt" class="form-control mb-2" required><label class="form-label">Deskripsi</label><textarea class="form-control mb-2" rows="3"></textarea><div class="row g-2"><div class="col-6"><label class="form-label">Mulai</label><input type="date" class="form-control"></div><div class="col-6"><label class="form-label">Berakhir</label><input type="date" class="form-control"></div></div>
+<label class="form-label mt-2">Gambar (opsional)</label><input type="file" class="form-control"></div><div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button><button class="btn btn-primary">Simpan</button></div></form></div></div>
+</div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+(function(){
+if(!FB.adminChrome('promo',2,'Promo'))return;
+var R=[['Promo akhir pekan','1 Okt - 31 Okt 2026','<span class="badge text-bg-success">Tampil di website</span>'],['Paket hemat keluarga','10 Okt - 25 Okt 2026','<span class="badge text-bg-success">Tampil di website</span>'],['Diskon pembukaan','1 Sep - 15 Sep 2026','<span class="badge text-bg-secondary">Sudah berakhir</span>']];
+var m=new bootstrap.Modal(document.getElementById('mdl'));
+function draw(){document.getElementById('rows').innerHTML=R.map(function(r,i){return '<tr><td class="fw-semibold">'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td class="text-end"><button class="btn btn-sm btn-outline-primary" data-e="'+i+'">Ubah</button> <button class="btn btn-sm btn-outline-danger" data-d="'+i+'"><i class="bi bi-trash"></i></button></td></tr>'}).join('');
+ document.querySelectorAll('[data-e]').forEach(function(b){b.onclick=function(){pt.value=R[b.dataset.e][0];m.show()}});
+ document.querySelectorAll('[data-d]').forEach(function(b){b.onclick=function(){if(confirm('Hapus promo ini?')){R.splice(b.dataset.d,1);draw()}}})}
+document.getElementById('add').onclick=function(){pt.value='';m.show()};
+document.getElementById('f').onsubmit=function(e){e.preventDefault();R.unshift([pt.value,'Periode contoh','<span class="badge text-bg-info">Belum mulai</span>']);m.hide();draw();FB.toast('Promo tersimpan (contoh).','success')};draw();
+})();
+</script>
+</body>
+</html>

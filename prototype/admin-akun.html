@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin - Akun saya</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/admin.css" rel="stylesheet">
+</head>
+<body>
+<div id="page" class="d-none">
+
+<div class="ad-card p-3 p-md-4 mb-3" style="max-width:520px"><div class="small text-muted">Masuk sebagai</div><div class="fw-bold" id="nm"></div><div><span class="badge text-bg-secondary" id="rl"></span></div></div>
+<form id="f" class="ad-card p-3 p-md-4" style="max-width:520px"><h2 class="h6">Ganti kata sandi</h2><div class="mb-3"><label class="form-label">Kata sandi saat ini</label><input type="password" class="form-control" required></div><div class="mb-3"><label class="form-label">Kata sandi baru</label><input type="password" class="form-control" required><div class="form-text">Minimal 8 karakter, mengandung huruf dan angka.</div></div><div class="mb-3"><label class="form-label">Ulangi kata sandi baru</label><input type="password" class="form-control" required></div><button class="btn btn-primary">Simpan</button></form>
+</div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+(function(){
+if(!FB.adminChrome('akun',1,'Akun saya'))return;
+document.getElementById('nm').textContent=FB.ROLES[FB.role()][0];document.getElementById('rl').textContent=FB.ROLES[FB.role()][0];
+document.getElementById('f').onsubmit=function(e){e.preventDefault();FB.toast('Kata sandi berhasil diganti (contoh).','success')};
+})();
+</script>
+</body>
+</html>
