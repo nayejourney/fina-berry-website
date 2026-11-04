@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keranjang | Warung Makan Fina Berry</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/app.css" rel="stylesheet">
+</head>
+<body>
+<div id="nav"></div>
+<main>
+
+<section class="container py-5"><h1 class="fb-section-title mb-4">Keranjang</h1><div id="cartBox"></div></section>
+</main>
+<div id="foot"></div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+FB.pubChrome('menu');
+function render(){var c=FB.getCart(),ids=Object.keys(c).filter(function(k){return c[k]>0});var box=document.getElementById('cartBox');
+ if(!ids.length){box.innerHTML='<div class="text-center py-5"><div class="display-4">🛒</div><p class="text-muted">Keranjang masih kosong.</p><a href="menu.html" class="btn btn-primary">Pilih menu</a></div>';FB.pubChrome('menu');return}
+ box.innerHTML='<div class="table-responsive"><table class="table align-middle"><thead><tr><th>Menu</th><th class="text-end">Harga</th><th style="width:130px">Jumlah</th><th class="text-end">Subtotal</th><th></th></tr></thead><tbody>'+
+ ids.map(function(k){var p=FB.prod(k);return '<tr><td><strong>'+p.name+'</strong></td><td class="text-end">'+FB.rp(p.price)+'</td><td><input type="number" min="0" max="50" value="'+c[k]+'" data-qty="'+k+'" class="form-control form-control-sm"></td><td class="text-end">'+FB.rp(p.price*c[k])+'</td><td class="text-end"><button class="btn btn-sm btn-outline-danger" data-del="'+k+'"><i class="bi bi-trash"></i></button></td></tr>'}).join('')+
+ '</tbody><tfoot><tr><th colspan="3" class="text-end">Total</th><th class="text-end fs-5 fb-price">'+FB.rp(FB.cartTotal())+'</th><th></th></tr></tfoot></table></div>'+
+ '<div class="d-flex flex-wrap gap-2 justify-content-between"><a href="menu.html" class="btn btn-outline-primary"><i class="bi bi-arrow-left"></i> Tambah menu</a><div class="d-flex gap-2"><button class="btn btn-outline-primary" id="upd">Perbarui jumlah</button><a href="checkout.html" class="btn btn-primary">Lanjut checkout <i class="bi bi-arrow-right"></i></a></div></div>';
+ box.querySelectorAll('[data-del]').forEach(function(b){b.onclick=function(){var c=FB.getCart();delete c[b.dataset.del];FB.saveCart(c);render();FB.toast('Item dihapus dari keranjang.')}});
+ document.getElementById('upd').onclick=function(){var c=FB.getCart();box.querySelectorAll('[data-qty]').forEach(function(i){var v=parseInt(i.value)||0;if(v<=0)delete c[i.dataset.qty];else c[i.dataset.qty]=Math.min(50,v)});FB.saveCart(c);render();FB.toast('Keranjang diperbarui.','success')}}
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin - Input pesanan di warung</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/admin.css" rel="stylesheet">
+</head>
+<body>
+<div id="page" class="d-none">
+
+<div class="row g-3"><div class="col-lg-8"><input type="search" id="cari" class="form-control form-control-lg mb-3" placeholder="Cari menu..." autocomplete="off"><div id="menus"></div></div>
+<div class="col-lg-4"><div class="ad-card p-3"><h2 class="h6">Ringkasan</h2><div id="rk" class="small mb-2 text-muted">Belum ada menu dipilih.</div><div class="d-flex justify-content-between fs-4 fw-bold mb-3"><span>Total</span><span id="tt">Rp 0</span></div>
+<label class="form-label small mb-1">Metode bayar</label><select class="form-select mb-2"><option>Tunai</option><option>Transfer bank</option><option>QRIS</option></select><label class="form-label small mb-1">Layanan</label><select class="form-select mb-2"><option>Makan di tempat</option><option>Bungkus / ambil</option></select>
+<label class="form-label small mb-1">Nama / nomor meja (opsional)</label><input class="form-control mb-3"><button class="btn btn-primary btn-lg w-100" id="sv"><i class="bi bi-check2-circle"></i> Simpan sebagai selesai dan lunas</button><button class="btn btn-link w-100" id="rs">Kosongkan</button></div></div></div>
+</div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+(function(){
+if(!FB.adminChrome('kasir',1,'Input pesanan di warung'))return;
+var Q={};var L=FB.PRODUCTS.filter(function(p){return p.ok});
+document.getElementById('menus').innerHTML=['Makanan','Minuman','Cemilan'].map(function(c){return '<h2 class="h6 text-uppercase text-muted mt-3">'+c+'</h2><div class="row g-2">'+L.filter(function(p){return p.cat===c}).map(function(p){return '<div class="col-12 col-md-6 pos-col" data-n="'+p.name.toLowerCase()+'"><div class="pos-item d-flex align-items-center gap-2" id="it'+p.id+'"><div class="me-auto"><div class="fw-semibold">'+p.name+'</div><div class="small text-muted">'+FB.rp(p.price)+'</div></div><button class="btn btn-outline-secondary pos-btn" data-p="'+p.id+'" data-d="-1">−</button><span class="pos-qty text-center" id="q'+p.id+'">0</span><button class="btn btn-primary pos-btn" data-p="'+p.id+'" data-d="1">+</button></div></div>'}).join('')+'</div>'}).join('');
+function calc(){var t=0,d=[];L.forEach(function(p){var q=Q[p.id]||0;document.getElementById('q'+p.id).textContent=q;document.getElementById('it'+p.id).classList.toggle('active',q>0);if(q){t+=q*p.price;d.push(q+' x '+p.name)}});document.getElementById('tt').textContent=FB.rp(t);document.getElementById('rk').textContent=d.length?d.join(', '):'Belum ada menu dipilih.';return t}
+document.querySelectorAll('[data-p]').forEach(function(b){b.onclick=function(){var id=b.dataset.p;Q[id]=Math.max(0,Math.min(50,(Q[id]||0)+parseInt(b.dataset.d)));calc()}});
+document.getElementById('rs').onclick=function(){Q={};calc()};
+document.getElementById('cari').oninput=function(e){var v=e.target.value.toLowerCase().trim();document.querySelectorAll('.pos-col').forEach(function(c){c.style.display=c.dataset.n.indexOf(v)>-1?'':'none'})};
+document.getElementById('sv').onclick=function(){var t=calc();if(!t){FB.toast('Pilih minimal satu menu.','danger');return}FB.toast('Pesanan tersimpan sebagai Selesai dan lunas ('+FB.rp(t)+').','success');setTimeout(function(){location.href='admin-pesanan-detail.html?id=FB-20261015-001'},900)};calc();
+})();
+</script>
+</body>
+</html>

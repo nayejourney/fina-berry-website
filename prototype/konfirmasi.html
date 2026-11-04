@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pesanan tersimpan | Warung Makan Fina Berry</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/app.css" rel="stylesheet">
+</head>
+<body>
+<div id="nav"></div>
+<main>
+
+<section class="container py-5" style="max-width:760px"><div class="text-center mb-4"><div class="display-5">✅</div><h1 class="h2">Pesanan tersimpan</h1><p class="text-muted mb-1">Kode pesanan Anda</p><div class="fs-3 fw-bold text-berry" id="kode"></div><span class="badge text-bg-warning mt-2">Menunggu</span></div>
+<div class="alert alert-warning"><strong>Satu langkah lagi:</strong> kirim pesan WhatsApp ke warung supaya pesanan segera diproses. Pesanan tetap tersimpan walaupun WhatsApp belum terkirim.</div>
+<div class="d-grid gap-2 mb-4"><a id="wa" href="#" target="_blank" rel="noopener" class="btn btn-success btn-lg"><i class="bi bi-whatsapp"></i> Buka WhatsApp</a><button type="button" id="cp" class="btn btn-outline-primary"><i class="bi bi-clipboard"></i> Salin pesan</button></div>
+<div class="card border-0 shadow-sm mb-3"><div class="card-body"><h2 class="h5">Ringkasan</h2><dl class="row small mb-3" id="info"></dl><ul class="list-unstyled mb-2" id="items"></ul><div class="d-flex justify-content-between fs-5 fw-bold"><span>Total</span><span class="fb-price" id="total"></span></div></div></div>
+<p class="small text-muted">Simpan halaman ini untuk melihat status pesanan. Pembayaran dilakukan langsung di warung.</p>
+<a href="menu.html" class="btn btn-link">Kembali ke menu</a> <a href="index.html" class="btn btn-link">Ke beranda</a></section>
+</main>
+<div id="foot"></div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+FB.pubChrome('menu');
+var L=null;try{L=JSON.parse(localStorage.getItem('fb_last'))}catch(e){}
+if(!L)L={code:'FB-20261015-004',name:'Budi',phone:'081234567890',ful:'Ambil di warung',pay:'Tunai',notes:'',cart:{1:2,13:1,9:2},total:48000};
+document.getElementById('kode').textContent=L.code;
+document.getElementById('info').innerHTML='<dt class="col-5">Nama</dt><dd class="col-7">'+L.name+'</dd><dt class="col-5">WhatsApp</dt><dd class="col-7">'+L.phone+'</dd><dt class="col-5">Pengambilan</dt><dd class="col-7">'+L.ful+'</dd><dt class="col-5">Rencana pembayaran</dt><dd class="col-7">'+L.pay+'</dd>'+(L.notes?'<dt class="col-5">Catatan</dt><dd class="col-7">'+L.notes+'</dd>':'');
+var ks=Object.keys(L.cart),msg='Halo Warung Makan Fina Berry, saya ingin memesan:\n\nKode pesanan: '+L.code+'\nNama: '+L.name+'\nWhatsApp: '+L.phone+'\nPengambilan: '+L.ful+'\n\nPesanan:\n';
+document.getElementById('items').innerHTML=ks.map(function(k,i){var p=FB.prod(k);msg+=(i+1)+'. '+p.name+' x'+L.cart[k]+' = '+FB.rp(p.price*L.cart[k])+'\n';return '<li class="d-flex justify-content-between py-1 border-bottom"><span>'+p.name+' <span class="text-muted">x'+L.cart[k]+'</span></span><span>'+FB.rp(p.price*L.cart[k])+'</span></li>'}).join('');
+msg+='\nTotal: '+FB.rp(L.total)+'\nRencana pembayaran: '+L.pay+' (dibayar langsung/offline)';
+document.getElementById('total').textContent=FB.rp(L.total);
+document.getElementById('wa').href='https://wa.me/'+FB.WA+'?text='+encodeURIComponent(msg);
+document.getElementById('cp').onclick=function(){(navigator.clipboard?navigator.clipboard.writeText(msg):Promise.reject()).then(function(){FB.toast('Pesan disalin.','success')}).catch(function(){FB.toast('Salin manual dari tombol WhatsApp.')})};
+</script>
+</body>
+</html>

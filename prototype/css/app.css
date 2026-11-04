@@ -1,0 +1,71 @@
+:root {
+  --fb-berry: #a3173f;
+  --fb-berry-dark: #7c0f2f;
+  --fb-cream: #fff7ee;
+  --fb-gold: #f2a73b;
+  --fb-ink: #2a1a17;
+  --fb-muted: #7b6a65;
+  --bs-body-font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --bs-body-color: var(--fb-ink);
+  --bs-link-color: var(--fb-berry);
+  --bs-link-hover-color: var(--fb-berry-dark);
+}
+body { background: #fff; }
+h1, h2, h3, .display-font { font-family: "Playfair Display", Georgia, serif; font-weight: 700; }
+.btn-primary {
+  --bs-btn-bg: var(--fb-berry); --bs-btn-border-color: var(--fb-berry);
+  --bs-btn-hover-bg: var(--fb-berry-dark); --bs-btn-hover-border-color: var(--fb-berry-dark);
+  --bs-btn-active-bg: var(--fb-berry-dark); --bs-btn-active-border-color: var(--fb-berry-dark);
+  --bs-btn-disabled-bg: var(--fb-berry); --bs-btn-disabled-border-color: var(--fb-berry);
+}
+.btn-outline-primary {
+  --bs-btn-color: var(--fb-berry); --bs-btn-border-color: var(--fb-berry);
+  --bs-btn-hover-bg: var(--fb-berry); --bs-btn-hover-border-color: var(--fb-berry);
+  --bs-btn-active-bg: var(--fb-berry-dark); --bs-btn-active-border-color: var(--fb-berry-dark);
+}
+.text-berry { color: var(--fb-berry) !important; }
+.bg-cream { background: var(--fb-cream) !important; }
+
+/* Navbar */
+.fb-nav { background: rgba(255, 255, 255, .96); backdrop-filter: blur(6px); border-bottom: 1px solid #f0e6dc; }
+.fb-nav .navbar-brand { font-family: "Playfair Display", serif; font-weight: 700; color: var(--fb-berry); }
+.fb-nav .nav-link { font-weight: 500; color: var(--fb-ink); }
+.fb-nav .nav-link.active, .fb-nav .nav-link:hover { color: var(--fb-berry); }
+.fb-logo { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; }
+
+/* Hero */
+.fb-hero { background: linear-gradient(135deg, var(--fb-cream) 0%, #ffe8d1 100%); }
+.fb-hero h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.1; }
+.fb-hero-img { border-radius: 24px; box-shadow: 0 20px 45px rgba(124, 15, 47, .18); aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
+.fb-tag { color: var(--fb-berry); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: .8rem; }
+.fb-section { padding: 4rem 0; }
+.fb-section-title { font-size: clamp(1.6rem, 3.5vw, 2.3rem); }
+
+/* Kartu menu */
+.fb-card { border: 0; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 18px rgba(42, 26, 23, .08); height: 100%; transition: transform .15s; }
+.fb-card:hover { transform: translateY(-3px); }
+.fb-card-img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; background: var(--fb-cream); }
+.fb-card-ph { aspect-ratio: 4 / 3; display: grid; place-items: center; font-size: 2.6rem; background: linear-gradient(135deg, var(--fb-cream), #ffe3c6); }
+.fb-price { color: var(--fb-berry); font-weight: 700; }
+.fb-soldout { filter: grayscale(.9); opacity: .75; }
+.fb-chip { border-radius: 999px; padding: .35rem 1rem; border: 1px solid #e8d9cb; color: var(--fb-ink); text-decoration: none; font-weight: 500; white-space: nowrap; }
+.fb-chip.active, .fb-chip:hover { background: var(--fb-berry); border-color: var(--fb-berry); color: #fff; }
+.fb-scroll-x { overflow-x: auto; display: flex; gap: .5rem; padding-bottom: .4rem; }
+
+/* Galeri dan promo */
+.fb-gallery img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 14px; }
+.fb-promo { border: 2px dashed var(--fb-gold); border-radius: 18px; background: #fffaf0; }
+.fb-map { border: 0; width: 100%; min-height: 320px; border-radius: 18px; }
+
+/* Footer dan tombol WhatsApp */
+.fb-footer { background: var(--fb-ink); color: #e9dcd3; }
+.fb-footer a { color: #fff; text-decoration: none; }
+.fb-footer a:hover { text-decoration: underline; }
+.fb-wa-float {
+  position: fixed; right: 18px; bottom: 18px; z-index: 1030; width: 56px; height: 56px; border-radius: 50%;
+  background: #25d366; color: #fff; display: grid; place-items: center; font-size: 1.8rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .25); text-decoration: none;
+}
+.fb-wa-float:hover { color: #fff; filter: brightness(.95); }
+.fb-badge-halal { background: #e8f5e9; color: #1b5e20; border: 1px solid #a5d6a7; border-radius: 999px; padding: .25rem .8rem; font-weight: 600; font-size: .85rem; }
+.fb-step { width: 34px; height: 34px; border-radius: 50%; background: var(--fb-berry); color: #fff; display: inline-grid; place-items: center; font-weight: 700; }

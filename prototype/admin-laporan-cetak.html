@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laporan Penjualan</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/print.css" rel="stylesheet">
+</head>
+<body>
+<div class="print-wrap" id="pw"><div class="print-actions no-print"><button onclick="window.print()" style="padding:8px 14px;font-weight:600">Cetak / simpan sebagai PDF</button> <a href="admin-laporan.html" style="padding:8px 14px">&larr; Kembali</a></div>
+<div class="print-head"><h1 style="margin:0;font-size:20px">Laporan Penjualan</h1><div>Warung Makan Fina Berry</div><div style="font-size:12px;color:#555">Periode 1 Oktober 2026 sampai 15 Oktober 2026</div></div>
+<div class="print-kpi"><div><small>Pendapatan</small><strong>Rp 4.220.000</strong></div><div><small>Pesanan selesai</small><strong>129</strong></div><div><small>Rata-rata per pesanan</small><strong>Rp 32.713</strong></div><div><small>Porsi terjual</small><strong>238</strong></div></div>
+<h2 class="print-h2">Per kanal</h2><table class="print-table"><tr><th>Kanal</th><th class="num">Pesanan</th><th class="num">Pendapatan</th></tr><tr><td>Online</td><td class="num">38</td><td class="num">Rp 1.240.000</td></tr><tr><td>Offline</td><td class="num">91</td><td class="num">Rp 2.980.000</td></tr></table>
+<h2 class="print-h2">Per menu</h2><table class="print-table"><tr><th>Menu</th><th class="num">Porsi</th><th class="num">Pendapatan</th></tr><tr><td>Bakso Daging Sapi</td><td class="num">96</td><td class="num">Rp 1.440.000</td></tr><tr><td>Paket Ayam Bakar Kampung</td><td class="num">41</td><td class="num">Rp 1.107.000</td></tr><tr><td>Soto Ayam Komplit</td><td class="num">38</td><td class="num">Rp 760.000</td></tr></table>
+<h2 class="print-h2">Rekap per hari</h2><table class="print-table" id="d"><tr><th>Tanggal</th><th class="num">Pesanan</th><th class="num">Pendapatan</th></tr></table></div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+if(FB.lvl()<2){document.getElementById('pw').innerHTML='<h2>403 Akses ditolak</h2><p>Peran %s tidak punya izin. <a href="admin-dashboard.html">Kembali ke dashboard</a></p>'.replace('%s',FB.ROLES[FB.role()][0])}else{var D=[['Sen, 12 Okt',16,'Rp 512.000'],['Sel, 13 Okt',19,'Rp 618.000'],['Rab, 14 Okt',17,'Rp 540.000'],['Kam, 15 Okt',9,'Rp 412.000'],['Jum, 16 Okt',21,'Rp 701.000'],['Sab, 17 Okt',25,'Rp 912.000'],['Min, 18 Okt',22,'Rp 525.000']];D.forEach(function(r){document.getElementById('d').insertAdjacentHTML('beforeend','<tr><td>'+r[0]+'</td><td class="num">'+r[1]+'</td><td class="num">'+r[2]+'</td></tr>')});}
+</script>
+</body>
+</html>

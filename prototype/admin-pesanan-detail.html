@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin - Detail pesanan</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/admin.css" rel="stylesheet">
+</head>
+<body>
+<div id="page" class="d-none">
+
+<div class="row g-3"><div class="col-lg-8" id="left"></div><div class="col-lg-4"><div class="ad-card p-3"><h3 class="h6">Tindakan</h3><div class="d-grid gap-2" id="acts"></div></div></div></div>
+<div class="modal fade" id="mdl" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="mt"></h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body" id="mb"></div><div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Kembali</button><button type="button" class="btn btn-primary" id="mok">Simpan</button></div></div></div></div>
+</div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+(function(){
+if(!FB.adminChrome('pesanan',1,'Detail pesanan'))return;
+var o=FB.ORDERS.filter(function(x){return x.code===FB.qs('id')})[0]||FB.ORDERS[1];
+var S={status:o.status,paid:o.paid,pay:o.pay,log:[['Pesanan dibuat '+(o.ch==='Online'?'pelanggan':'di warung'),'Menunggu',o.time]]};
+if(o.status!=='menunggu')S.log.unshift(['Diproses oleh staf','Menunggu → Diproses',o.time]);
+if(o.status==='selesai')S.log.unshift(['Selesai','Diproses → Selesai',o.time]);
+if(o.status==='dibatalkan')S.log.unshift([o.reason||'Dibatalkan','Menunggu → Dibatalkan',o.time]);
+var modal=new bootstrap.Modal(document.getElementById('mdl'));
+function ask(title,body,cb,btn){document.getElementById('mt').textContent=title;document.getElementById('mb').innerHTML=body;var b=document.getElementById('mok');b.textContent=btn||'Simpan';b.onclick=function(){if(cb()!==false)modal.hide()};modal.show()}
+function need(id){var v=document.getElementById(id).value.trim();if(v.length<5){FB.toast('Alasan wajib diisi (minimal 5 karakter).','danger');return false}return v}
+function set(st,note,pill){S.status=st;S.log.unshift([note,pill,'sekarang']);FB.toast('Status diubah menjadi '+FB.STATUS[st][0]+'.','success');draw()}
+function draw(){var t=FB.orderTotal(o),lv=FB.lvl();
+ document.getElementById('left').innerHTML='<div class="ad-card p-3 p-md-4 mb-3"><div class="d-flex flex-wrap justify-content-between gap-2 mb-3"><div><h2 class="h4 mb-1">'+o.code+'</h2><div class="text-muted small">'+o.time+' &middot; '+(o.ch==='Online'?'Online (website/WhatsApp)':'Input di warung')+'</div></div><div>'+FB.badges(o,S.status,S.paid)+'</div></div>'+
+ '<dl class="row small mb-3"><dt class="col-sm-4">Pelanggan</dt><dd class="col-sm-8">'+o.name+'</dd>'+(o.phone?'<dt class="col-sm-4">WhatsApp</dt><dd class="col-sm-8">'+o.phone+' <a target="_blank" rel="noopener" href="https://wa.me/62'+o.phone.slice(1)+'" class="btn btn-success btn-sm ms-2 py-0"><i class="bi bi-whatsapp"></i> Hubungi</a></dd>':'')+
+ '<dt class="col-sm-4">Pengambilan</dt><dd class="col-sm-8">'+o.ful+'</dd><dt class="col-sm-4">Metode bayar</dt><dd class="col-sm-8">'+S.pay+'</dd>'+(o.notes?'<dt class="col-sm-4">Catatan</dt><dd class="col-sm-8">'+o.notes+'</dd>':'')+'</dl>'+
+ '<table class="table table-sm align-middle mb-0"><thead><tr><th>Menu</th><th class="text-end">Harga</th><th class="text-end">Jumlah</th><th class="text-end">Subtotal</th></tr></thead><tbody>'+o.items.map(function(i){var p=FB.prod(i[0]);return '<tr><td>'+p.name+'</td><td class="text-end">'+FB.rp(p.price)+'</td><td class="text-end">'+i[1]+'</td><td class="text-end">'+FB.rp(p.price*i[1])+'</td></tr>'}).join('')+'</tbody><tfoot><tr><th colspan="3" class="text-end">Total</th><th class="text-end fs-5">'+FB.rp(t)+'</th></tr></tfoot></table></div>'+
+ '<div class="ad-card p-3"><h3 class="h6">Riwayat status</h3><ul class="status-timeline small mb-0">'+S.log.map(function(l){return '<li><strong>'+l[1]+'</strong> <span class="text-muted">&middot; '+l[2]+'</span><div class="text-muted">'+l[0]+'</div></li>'}).join('')+'</ul></div>';
+ var a='',act=S.status==='menunggu'||S.status==='diproses';
+ if(S.status==='menunggu')a+='<button class="btn btn-info" data-a="proses"><i class="bi bi-play-circle"></i> Proses pesanan</button>';
+ if(!S.paid&&S.status!=='dibatalkan')a+='<button class="btn btn-success" data-a="bayar"><i class="bi bi-cash-coin"></i> Validasi pembayaran</button>';
+ if(S.status==='diproses')a+='<button class="btn btn-primary" data-a="selesai"'+(S.paid?'':' disabled')+'><i class="bi bi-check2-circle"></i> Tandai selesai</button>'+(S.paid?'':'<div class="small text-danger">Validasi pembayaran dulu sebelum menandai selesai.</div>');
+ if(act)a+='<button class="btn btn-outline-danger" data-a="batal"><i class="bi bi-x-circle"></i> Batalkan pesanan</button>';
+ if(S.status==='selesai'&&lv>=2)a+='<button class="btn btn-outline-warning" data-a="koreksi"><i class="bi bi-pencil-square"></i> Koreksi pesanan selesai</button>';
+ if(S.paid&&S.status!=='selesai'&&lv>=2)a+='<button class="btn btn-outline-secondary btn-sm" data-a="batalbayar">Batalkan validasi pembayaran</button>';
+ a+='<a href="admin-struk.html?id='+o.code+'" class="btn btn-outline-dark"><i class="bi bi-printer"></i> Cetak struk</a><a href="admin-pesanan.html" class="btn btn-link">&larr; Kembali ke daftar</a>';
+ document.getElementById('acts').innerHTML=a;
+ document.querySelectorAll('[data-a]').forEach(function(b){b.onclick=function(){var k=b.dataset.a;
+  if(k==='proses')set('diproses','Diproses oleh '+FB.ROLES[FB.role()][0],'Menunggu → Diproses');
+  if(k==='selesai')set('selesai','Selesai','Diproses → Selesai');
+  if(k==='bayar')ask('Validasi pembayaran','<p>Konfirmasi uang sebesar <strong>'+FB.rp(t)+'</strong> sudah diterima (pembayaran offline).</p><label class="form-label">Metode pembayaran</label><select id="mm" class="form-select mb-3"><option>Tunai</option><option>Transfer bank</option><option>QRIS</option></select><label class="form-label">Catatan (opsional)</label><input class="form-control">',function(){S.paid=true;S.pay=document.getElementById('mm').value;S.log.unshift(['Pembayaran divalidasi ('+S.pay+')','Lunas','sekarang']);FB.toast('Pembayaran tervalidasi dan tercatat di rekap.','success');draw()},'Validasi lunas');
+  if(k==='batal')ask('Batalkan pesanan','<label class="form-label">Alasan pembatalan (wajib)</label><textarea id="rs" class="form-control" rows="3" placeholder="Contoh: pelanggan tidak merespons WhatsApp"></textarea><div class="form-text">Pesanan yang dibatalkan tidak dihitung sebagai pendapatan.</div>',function(){var v=need('rs');if(v===false)return false;set('dibatalkan',v,(FB.STATUS[S.status][0])+' → Dibatalkan')},'Batalkan pesanan');
+  if(k==='koreksi')ask('Koreksi pesanan selesai','<label class="form-label">Ubah menjadi</label><select id="ko" class="form-select mb-3"><option value="diproses">Diproses (dibuka kembali)</option><option value="dibatalkan">Dibatalkan</option></select><label class="form-label">Alasan koreksi (wajib)</label><textarea id="rs" class="form-control" rows="3"></textarea><div class="form-text">Koreksi tercatat di riwayat status dan log aktivitas.</div>',function(){var v=need('rs');if(v===false)return false;var to=document.getElementById('ko').value;set(to,'Koreksi: '+v,'Selesai → '+FB.STATUS[to][0])},'Simpan koreksi');
+  if(k==='batalbayar')ask('Batalkan validasi pembayaran','<label class="form-label">Alasan (wajib)</label><textarea id="rs" class="form-control" rows="3"></textarea>',function(){var v=need('rs');if(v===false)return false;S.paid=false;S.log.unshift(['Validasi dibatalkan: '+v,'Belum bayar','sekarang']);FB.toast('Validasi pembayaran dibatalkan.','success');draw()},'Batalkan validasi')}})}
+draw();
+})();
+</script>
+</body>
+</html>

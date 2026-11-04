@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin - Pesanan</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/admin.css" rel="stylesheet">
+</head>
+<body>
+<div id="page" class="d-none">
+
+<div class="ad-card p-3 mb-3"><div class="row g-2 align-items-end">
+<div class="col-6 col-md-2"><label class="form-label small mb-1">Status</label><select id="fs" class="form-select form-select-sm"><option value="">Semua</option><option value="aktif">Aktif (menunggu + diproses)</option><option value="menunggu">Menunggu</option><option value="diproses">Diproses</option><option value="selesai">Selesai</option><option value="dibatalkan">Dibatalkan</option></select></div>
+<div class="col-6 col-md-2"><label class="form-label small mb-1">Kanal</label><select id="fc" class="form-select form-select-sm"><option value="">Semua</option><option>Online</option><option>Warung</option></select></div>
+<div class="col-6 col-md-2"><label class="form-label small mb-1">Pembayaran</label><select id="fp" class="form-select form-select-sm"><option value="">Semua</option><option value="belum_bayar">Belum dibayar</option><option value="lunas">Lunas</option></select></div>
+<div class="col-6 col-md-2"><label class="form-label small mb-1">Dari</label><input type="date" class="form-control form-control-sm"></div><div class="col-6 col-md-2"><label class="form-label small mb-1">Sampai</label><input type="date" class="form-control form-control-sm"></div>
+<div class="col-6 col-md-2"><label class="form-label small mb-1">Cari</label><input type="search" id="fq" class="form-control form-control-sm" placeholder="Kode/nama/HP"></div></div>
+<div class="mt-2 d-flex gap-2"><button class="btn btn-primary btn-sm" id="ap">Terapkan</button><button class="btn btn-outline-secondary btn-sm" id="rs">Reset</button><a href="admin-kasir.html" class="btn btn-outline-dark btn-sm ms-auto"><i class="bi bi-calculator"></i> Input di warung</a></div></div>
+<div class="ad-card p-3"><div class="table-responsive"><table class="table table-hover align-middle mb-0"><thead><tr><th>Kode</th><th>Waktu</th><th>Kanal</th><th>Pelanggan</th><th>Item</th><th class="text-end">Total</th><th>Status</th><th></th></tr></thead><tbody id="rows"></tbody></table></div></div>
+</div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+(function(){
+if(!FB.adminChrome('pesanan',1,'Pesanan'))return;
+var fs=document.getElementById('fs'),fc=document.getElementById('fc'),fp=document.getElementById('fp'),fq=document.getElementById('fq');
+fs.value=FB.qs('status')||'';fp.value=FB.qs('bayar')||'';
+function draw(){var q=fq.value.toLowerCase();var L=FB.ORDERS.filter(function(o){
+ if(fs.value==='aktif'&&!(o.status==='menunggu'||o.status==='diproses'))return false;if(fs.value&&fs.value!=='aktif'&&o.status!==fs.value)return false;
+ if(fc.value&&o.ch!==fc.value)return false;if(fp.value==='lunas'&&!o.paid)return false;if(fp.value==='belum_bayar'&&o.paid)return false;
+ if(q&&(o.code+o.name+o.phone).toLowerCase().indexOf(q)<0)return false;return true});
+ document.getElementById('rows').innerHTML=L.length?L.map(function(o){return '<tr class="'+(o.status==='menunggu'?'table-warning':'')+'"><td><a class="fw-semibold" href="admin-pesanan-detail.html?id='+o.code+'">'+o.code+'</a></td><td>'+o.time+'</td><td>'+o.ch+'</td><td>'+o.name+(o.phone?'<div class="small text-muted">'+o.phone+'</div>':'')+'</td><td>'+o.items.reduce(function(s,i){return s+i[1]},0)+' porsi</td><td class="text-end">'+FB.rp(FB.orderTotal(o))+'</td><td>'+FB.badges(o)+'</td><td class="text-end"><a class="btn btn-sm btn-outline-primary" href="admin-pesanan-detail.html?id='+o.code+'">Detail</a></td></tr>'}).join(''):'<tr><td colspan="8" class="text-center text-muted py-4">Tidak ada pesanan yang cocok.</td></tr>'}
+document.getElementById('ap').onclick=draw;document.getElementById('rs').onclick=function(){fs.value=fc.value=fp.value=fq.value='';draw()};draw();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin - Akun pengguna</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/admin.css" rel="stylesheet">
+</head>
+<body>
+<div id="page" class="d-none">
+
+<div class="mb-3"><button class="btn btn-primary btn-sm" id="add"><i class="bi bi-plus-lg"></i> Tambah akun</button></div>
+<div class="ad-card p-3"><table class="table align-middle mb-0"><thead><tr><th>Nama</th><th>Email</th><th>Peran</th><th>Status</th><th>Login terakhir</th><th></th></tr></thead><tbody id="rows"></tbody></table><p class="small text-muted mt-2 mb-0" id="note"></p></div>
+<div class="modal fade" id="mdl" tabindex="-1"><div class="modal-dialog"><form class="modal-content" id="f"><div class="modal-header"><h5 class="modal-title">Akun pengguna</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body">
+<label class="form-label">Nama</label><input class="form-control mb-2" required><label class="form-label">Email (untuk login)</label><input type="email" class="form-control mb-2" required><label class="form-label">Peran</label><select id="pr" class="form-select mb-2"></select>
+<label class="form-label">Kata sandi baru</label><input type="password" class="form-control"><div class="form-text">Minimal 8 karakter, mengandung huruf dan angka.</div></div><div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button><button class="btn btn-primary">Simpan</button></div></form></div></div>
+</div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+(function(){
+if(!FB.adminChrome('pengguna',2,'Akun pengguna'))return;
+var U=[['Bos Fina Berry','bos@finaberry.test','Bos (Super Admin)','Aktif','15/10 08:02',3],['Manager Fina Berry','pemilik@finaberry.test','Manager/Pemilik','Aktif','15/10 07:45',2],['Staf Warung','staf@finaberry.test','Staf','Aktif','15/10 08:30',1],['Staf Weekend','weekend@finaberry.test','Staf','Nonaktif','-',1]];
+var me=FB.lvl(),m=new bootstrap.Modal(document.getElementById('mdl'));
+document.getElementById('pr').innerHTML=(me>=3?'<option>Bos (Super Admin)</option><option>Manager/Pemilik</option>':'')+'<option>Staf</option>';
+if(me<3)document.getElementById('note').textContent='Manager hanya dapat mengelola akun Staf. Akun Manager dan Bos dikelola Bos.';
+function draw(){document.getElementById('rows').innerHTML=U.map(function(u){return '<tr><td class="fw-semibold">'+u[0]+'</td><td>'+u[1]+'</td><td><span class="badge text-bg-secondary">'+u[2]+'</span></td><td>'+(u[3]==='Aktif'?'<span class="badge text-bg-success">Aktif</span>':'<span class="badge text-bg-danger">Nonaktif</span>')+'</td><td>'+u[4]+'</td><td class="text-end">'+((me>=3||u[5]===1)?'<button class="btn btn-sm btn-outline-primary" data-e>Ubah</button>':'')+'</td></tr>'}).join('');
+ document.querySelectorAll('[data-e]').forEach(function(b){b.onclick=function(){m.show()}})}
+document.getElementById('add').onclick=function(){m.show()};document.getElementById('f').onsubmit=function(e){e.preventDefault();m.hide();FB.toast('Akun tersimpan (contoh).','success')};draw();
+})();
+</script>
+</body>
+</html>

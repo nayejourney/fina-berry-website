@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laporan Laba Rugi dan Analitik</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/print.css" rel="stylesheet">
+</head>
+<body>
+<div class="print-wrap" id="pw"><div class="print-actions no-print"><button onclick="window.print()" style="padding:8px 14px;font-weight:600">Cetak / simpan sebagai PDF</button> <a href="admin-analitik.html" style="padding:8px 14px">&larr; Kembali</a></div>
+<div class="print-head"><h1 style="margin:0;font-size:20px">Laporan Laba Rugi dan Analitik</h1><div>Warung Makan Fina Berry</div><div style="font-size:12px;color:#555">Periode 1 Oktober 2026 sampai 15 Oktober 2026</div></div>
+<div class="print-kpi"><div><small>Pendapatan</small><strong>Rp 4.220.000</strong></div><div><small>Laba kotor (margin 45%)</small><strong>Rp 1.899.000</strong></div><div><small>Laba bersih (margin 16,6%)</small><strong>Rp 699.000</strong></div><div><small>Pesanan selesai</small><strong>129</strong></div></div>
+<h2 class="print-h2">Laporan laba rugi</h2><table class="print-table"><tr><td>Pendapatan</td><td class="num">Rp 4.220.000</td></tr><tr><td>HPP</td><td class="num">- Rp 2.321.000</td></tr><tr><th>Laba kotor</th><th class="num">Rp 1.899.000</th></tr><tr><td>Biaya operasional</td><td class="num">- Rp 1.200.000</td></tr><tr><th>Laba bersih</th><th class="num">Rp 699.000</th></tr></table>
+<h2 class="print-h2">Tren harian</h2><canvas id="c1" width="700" height="240" style="max-width:100%"></canvas>
+<h2 class="print-h2">Kontribusi laba per menu</h2><table class="print-table"><tr><th>Menu</th><th class="num">Porsi</th><th class="num">Pendapatan</th><th class="num">Laba</th><th class="num">Margin</th></tr><tr><td>Bakso Daging Sapi</td><td class="num">96</td><td class="num">Rp 1.440.000</td><td class="num">Rp 648.000</td><td class="num">45%</td></tr><tr><td>Paket Ayam Bakar Kampung</td><td class="num">41</td><td class="num">Rp 1.107.000</td><td class="num">Rp 498.000</td><td class="num">45%</td></tr></table></div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/chart.umd.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+if(FB.lvl()<3){document.getElementById('pw').innerHTML='<h2>403 Akses ditolak</h2><p>Peran %s tidak punya izin. <a href="admin-dashboard.html">Kembali ke dashboard</a></p>'.replace('%s',FB.ROLES[FB.role()][0])}else{new Chart(c1,{type:'line',data:{labels:['12/10','13/10','14/10','15/10','16/10','17/10','18/10'],datasets:[{label:'Pendapatan',data:[512000,618000,540000,412000,701000,912000,525000],borderColor:'#a3173f'},{label:'Laba bersih',data:[210000,260000,215000,150000,300000,420000,210000],borderColor:'#198754'}]},options:{responsive:false,animation:false}});}
+</script>
+</body>
+</html>

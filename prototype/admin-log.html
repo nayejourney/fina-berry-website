@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin - Log aktivitas</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/admin.css" rel="stylesheet">
+</head>
+<body>
+<div id="page" class="d-none">
+
+<div class="ad-card p-3"><div class="table-responsive"><table class="table table-sm align-middle mb-0"><thead><tr><th>Waktu</th><th>Pengguna</th><th>Aksi</th><th>Objek</th><th>Detail</th></tr></thead><tbody>
+<tr><td>15/10 11:05</td><td>Manager Fina Berry</td><td><code>product.price_changed</code></td><td>Product #7</td><td class="small text-muted">harga 25.000 → 27.000</td></tr>
+<tr><td>15/10 10:30</td><td>Staf Warung</td><td><code>order.payment_validated</code></td><td>Order #2</td><td class="small text-muted">metode tunai, 35.000</td></tr>
+<tr><td>14/10 17:12</td><td>Manager Fina Berry</td><td><code>order.correction</code></td><td>Order #9</td><td class="small text-muted">selesai → dibatalkan, salah input pesanan</td></tr>
+<tr><td>14/10 09:00</td><td>Bos Fina Berry</td><td><code>user.created</code></td><td>User #4</td><td class="small text-muted">peran staf</td></tr></tbody></table></div></div>
+</div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+(function(){
+if(!FB.adminChrome('log',2,'Log aktivitas'))return;
+
+})();
+</script>
+</body>
+</html>

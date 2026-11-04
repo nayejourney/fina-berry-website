@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin - Kategori menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/admin.css" rel="stylesheet">
+</head>
+<body>
+<div id="page" class="d-none">
+
+<div class="row g-3"><div class="col-lg-8"><div class="ad-card p-3"><table class="table align-middle mb-0"><thead><tr><th>Nama</th><th style="width:110px">Urutan</th><th>Menu</th><th></th></tr></thead><tbody id="rows"></tbody></table></div></div>
+<div class="col-lg-4"><form id="f" class="ad-card p-3"><h2 class="h6">Tambah kategori</h2><input id="nn" class="form-control mb-2" placeholder="Nama kategori" required><input type="number" class="form-control mb-2" placeholder="Urutan"><button class="btn btn-primary">Tambah</button></form></div></div>
+</div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+(function(){
+if(!FB.adminChrome('kategori',2,'Kategori menu'))return;
+var C=[['Makanan',1,8],['Minuman',2,4],['Cemilan',3,3]];
+function draw(){document.getElementById('rows').innerHTML=C.map(function(c,i){return '<tr><td><input class="form-control form-control-sm" value="'+c[0]+'"></td><td><input type="number" class="form-control form-control-sm" value="'+c[1]+'"></td><td>'+c[2]+'</td><td class="text-end"><button class="btn btn-sm btn-outline-primary" data-s="'+i+'">Simpan</button> <button class="btn btn-sm btn-outline-danger" data-d="'+i+'"><i class="bi bi-trash"></i></button></td></tr>'}).join('');
+ document.querySelectorAll('[data-s]').forEach(function(b){b.onclick=function(){FB.toast('Kategori diperbarui (contoh).','success')}});
+ document.querySelectorAll('[data-d]').forEach(function(b){b.onclick=function(){var c=C[b.dataset.d];if(c[2]>0){FB.toast('Kategori masih berisi menu. Pindahkan atau hapus menunya dulu.','danger');return}C.splice(b.dataset.d,1);draw()}})}
+document.getElementById('f').onsubmit=function(e){e.preventDefault();C.push([nn.value,C.length+1,0]);nn.value='';draw();FB.toast('Kategori ditambahkan.','success')};draw();
+})();
+</script>
+</body>
+</html>

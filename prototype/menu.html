@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menu dan Harga | Warung Makan Fina Berry</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/app.css" rel="stylesheet">
+</head>
+<body>
+<div id="nav"></div>
+<main>
+
+<section class="container py-5"><p class="fb-tag mb-1">Katalog</p><h1 class="fb-section-title mb-4">Menu dan harga</h1>
+<div class="fb-scroll-x mb-4" id="chips"></div><div id="list"></div></section>
+</main>
+<div id="foot"></div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/proto.js"></script>
+<script>
+FB.pubChrome('menu');
+var cat=FB.qs('kategori');var cats=['Makanan','Minuman','Cemilan'];
+document.getElementById('chips').innerHTML='<a href="menu.html" class="fb-chip'+(cat?'':' active')+'">Semua</a>'+cats.map(function(c){return '<a href="menu.html?kategori='+c+'" class="fb-chip'+(cat===c?' active':'')+'">'+c+'</a>'}).join('');
+document.getElementById('list').innerHTML=cats.filter(function(c){return !cat||cat===c}).map(function(c){
+ return '<h2 class="h4 mt-4 mb-3">'+c+'</h2><div class="row g-3 g-md-4">'+FB.PRODUCTS.filter(function(p){return p.cat===c}).map(function(p){return '<div class="col-6 col-md-4 col-lg-3">'+FB.card(p)+'</div>'}).join('')+'</div>'}).join('');
+</script>
+</body>
+</html>
