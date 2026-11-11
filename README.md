@@ -1,11 +1,12 @@
-# fina-berry-website
-Website Warung Makan Fina Berry
+# Fina Berry Website
 
 Sistem informasi berbasis web untuk mendukung pemasaran digital dan pengelolaan usaha Warung Makan Fina Berry.
 
+Proyek ini dikembangkan oleh Kelompok 1 Kelas A1 Sistem Informasi, Universitas Kebangsaan Republik Indonesia, sebagai solusi digital untuk membantu pelanggan memperoleh informasi usaha dan melakukan pemesanan, sekaligus membantu pemilik mengelola menu, promo, pesanan, serta laporan penjualan.
+
 ## Tentang Proyek
 
-Proyek ini dikembangkan oleh Kelompok 1 Kelas A1 Sistem Informasi, Universitas Kebangsaan Republik Indonesia, sebagai usulan pengembangan website untuk membantu pelanggan memperoleh informasi usaha dan melakukan pemesanan, sekaligus membantu pemilik mengelola menu, promo, pesanan, dan laporan penjualan.
+Website Fina Berry dirancang sebagai aplikasi Laravel dengan pendekatan MVC. Aplikasi mencakup halaman publik untuk pelanggan dan dashboard administrasi untuk pengelolaan operasional warung.
 
 ## Tujuan
 
@@ -28,7 +29,7 @@ Proyek ini dikembangkan oleh Kelompok 1 Kelas A1 Sistem Informasi, Universitas K
 
 ### Admin dan Pemilik
 - Login dan pengelolaan hak akses.
-- CRUD menu dan kategori.
+- Pengelolaan menu dan kategori.
 - Pengelolaan promo dan galeri.
 - Daftar pesanan dan perubahan status.
 - Input pesanan langsung di warung.
@@ -37,13 +38,33 @@ Proyek ini dikembangkan oleh Kelompok 1 Kelas A1 Sistem Informasi, Universitas K
 
 ## Teknologi
 
-- Backend: PHP dan Laravel (MVC)
+- Backend: PHP dan Laravel
 - Frontend: HTML, CSS, JavaScript, Blade
-- CSS Framework: Tailwind CSS atau Bootstrap (pilihan final mengikuti keputusan tim)
-- Database: MySQL 8
+- CSS Framework: Tailwind CSS
+- Database: MySQL
 - UI/UX: Figma
 - Grafik laporan: Chart.js
 - Version Control: Git dan GitHub
+
+## Dokumentasi
+
+Dokumentasi proyek mencakup:
+
+- [Project Charter](docs/Project_Charter_Warung_Makan_Fina_Berry_v1.docx)
+- [Software Requirements Specification (SRS)](docs/SRS_Warung_Makan_Fina_Berry_v2.docx)
+- [Sprint Backlog](docs/Sprint_Backlog_Warung_Makan_Fina_Berry.xlsx)
+- [Work Breakdown Structure (WBS)](docs/WBS_Warung_Makan_Fina_Berry.png)
+- [Panduan Implementasi Laravel](docs/PANDUAN-IMPLEMENTASI-LARAVEL.md)
+
+Dokumen perencanaan dan diagram lainnya tersedia di folder `docs/`.
+
+## Menjalankan Aplikasi
+
+Untuk persyaratan sistem, instalasi dependency, konfigurasi database, migrasi, seeder, dan akun demo, silakan baca [Panduan Implementasi Laravel](docs/PANDUAN-IMPLEMENTASI-LARAVEL.md).
+
+## Status Proyek
+
+Repository ini mencakup dokumentasi perencanaan dan implementasi aplikasi. Status fitur dan pengembangan dapat berubah mengikuti hasil pengerjaan serta evaluasi tim.
 
 ## Tim Pengembang
 
@@ -54,16 +75,6 @@ Proyek ini dikembangkan oleh Kelompok 1 Kelas A1 Sistem Informasi, Universitas K
 | Dinda Italia | Backend Developer |
 | Nosa Putra | Frontend & Backend Developer |
 | Devina Ayuliani | QA Tester |
-
-## Dokumentasi
-
-Dokumentasi proyek mencakup USTEK, Software Requirements Specification (SRS), diagram sistem, rancangan UI/UX, rancangan database, serta hasil pengujian.
-
-## Status Proyek
-
-Tahap pengembangan mengikuti rencana analisis kebutuhan, perancangan, implementasi, pengujian, deployment, dan dokumentasi.
-
-> Catatan: Fitur yang tercantum merupakan ruang lingkup usulan. Status implementasi dan ketersediaan fitur aktual akan diperbarui sesuai progres pengembangan.
 
 ## Mata Kuliah
 
